@@ -1,0 +1,50 @@
+DFA_NORMAL_HANDSHAKE = {
+    "name": "normal_handshake",
+    "alphabet": ["SYN", "SYN_ACK", "ACK", "FIN", "RST", "TIMEOUT"],
+    "states": ["q0", "q1", "q2", "q3", "q_dead"],
+    "start_state": "q0",
+    "accept_states": ["q3"],
+    "transitions": {
+        "q0": {
+            "SYN": "q1",
+            "SYN_ACK": "q_dead",
+            "ACK": "q_dead",
+            "FIN": "q_dead",
+            "RST": "q_dead",
+            "TIMEOUT": "q_dead"
+        },
+        "q1": {
+            "SYN": "q_dead",
+            "SYN_ACK": "q2",
+            "ACK": "q_dead",
+            "FIN": "q_dead",
+            "RST": "q_dead",
+            "TIMEOUT": "q_dead"
+        },
+        "q2": {
+            "SYN": "q_dead",
+            "SYN_ACK": "q_dead",
+            "ACK": "q3",
+            "FIN": "q_dead",
+            "RST": "q_dead",
+            "TIMEOUT": "q_dead"
+        },
+        "q3": {
+            "SYN": "q_dead",
+            "SYN_ACK": "q_dead",
+            "ACK": "q_dead",
+            "FIN": "q_dead",
+            "RST": "q_dead",
+            "TIMEOUT": "q_dead"
+        },
+        "q_dead": {
+            "SYN": "q_dead",
+            "SYN_ACK": "q_dead",
+            "ACK": "q_dead",
+            "FIN": "q_dead",
+            "RST": "q_dead",
+            "TIMEOUT": "q_dead"
+        }
+    }
+
+}
