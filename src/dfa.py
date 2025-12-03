@@ -5,26 +5,24 @@ class DFA:
         self.states = set(states)
         self.start_state = start_state
         self.accept_states = set(accept_states)
-        self.transitions = transitions
+        self.transitions = transitions  # dict[state][symbol] -> next_state
 
     def run(self, input_symbols):
-        """
-        Run this DFA on a list of input symbols.
-
-        Returns:
-            (accepted: bool, path: list[str], error: Optional[str])
-        """
         state = self.start_state
-        path = [state]
+        path = [state]  # track the path for visualization
 
         for symbol in input_symbols:
             if symbol not in self.alphabet:
+                # unknown symbol → reject (or treat as dead)
                 return False, path, f"Unknown symbol: {symbol}"
 
+            # transitions for current state
             state_transitions = self.transitions.get(state, {})
-            if symbol not in state_transitions:
-                return False, path, f"No transition defined for ({state}, {symbol})"
 
+            if symbol not in state_transitions:
+                return False, path, f"No transition for ({state}, {symbol})"
+
+            # transition to next state
             state = state_transitions[symbol]
             path.append(state)
 
