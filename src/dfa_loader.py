@@ -1,8 +1,11 @@
 import json
 import os
+
 from .dfa import DFA
 
-def load_dfa_from_file(path):
+
+def load_dfa_from_file(path: str) -> DFA:
+    """Load a single DFA definition from a JSON file."""
     with open(path, "r") as f:
         data = json.load(f)
 
@@ -12,10 +15,12 @@ def load_dfa_from_file(path):
         states=data["states"],
         start_state=data["start_state"],
         accept_states=data["accept_states"],
-        transitions=data["transitions"]
+        transitions=data["transitions"],
     )
 
-def load_all_dfas(machines_dir):
+
+def load_all_dfas(machines_dir: str):
+    """Load all DFA definitions from JSON files in the given directory."""
     dfas = []
     for filename in os.listdir(machines_dir):
         if filename.endswith(".json"):
