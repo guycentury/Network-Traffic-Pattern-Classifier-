@@ -1,12 +1,4 @@
-from .dfa import DFA
-
-def classify_sequence(dfas: list[DFA], input_sequence: list[str]):
-    """
-    Run a list of DFAs on the same input sequence.
-    Returns:
-        label: str - overall classification
-        results: list[dict] - detailed per-DFA result
-    """
+def classify_sequence(dfas, input_sequence):
     results = []
 
     for dfa in dfas:
@@ -18,7 +10,6 @@ def classify_sequence(dfas: list[DFA], input_sequence: list[str]):
             "error": error
         })
 
-    # Decide overall label based on which DFAs accepted
     accepted_dfas = [r["dfa_name"] for r in results if r["accepted"]]
 
     if not accepted_dfas:
