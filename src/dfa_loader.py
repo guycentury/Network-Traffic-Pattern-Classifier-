@@ -2,7 +2,7 @@ import json
 import os
 from .dfa import DFA
 
-def load_dfa_from_file(path: str) -> DFA:
+def load_dfa_from_file(path):
     with open(path, "r") as f:
         data = json.load(f)
 
@@ -15,7 +15,7 @@ def load_dfa_from_file(path: str) -> DFA:
         transitions=data["transitions"]
     )
 
-def load_all_dfas(machines_dir: str):
+def load_all_dfas(machines_dir):
     dfas = []
     for filename in os.listdir(machines_dir):
         if filename.endswith(".json"):
