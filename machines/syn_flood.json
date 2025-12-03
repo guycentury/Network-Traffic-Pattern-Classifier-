@@ -1,0 +1,49 @@
+{
+  "name": "syn_flood",
+  "alphabet": ["SYN", "SYN_ACK", "ACK", "FIN", "RST", "TIMEOUT"],
+  "states": ["q0", "q1", "q2", "q3_plus", "q_dead"],
+  "start_state": "q0",
+  "accept_states": ["q3_plus"],
+  "transitions": {
+    "q0": {
+      "SYN": "q1",
+      "SYN_ACK": "q_dead",
+      "ACK": "q_dead",
+      "FIN": "q_dead",
+      "RST": "q_dead",
+      "TIMEOUT": "q_dead"
+    },
+    "q1": {
+      "SYN": "q2",
+      "SYN_ACK": "q_dead",
+      "ACK": "q_dead",
+      "FIN": "q_dead",
+      "RST": "q_dead",
+      "TIMEOUT": "q_dead"
+    },
+    "q2": {
+      "SYN": "q3_plus",
+      "SYN_ACK": "q_dead",
+      "ACK": "q_dead",
+      "FIN": "q_dead",
+      "RST": "q_dead",
+      "TIMEOUT": "q_dead"
+    },
+    "q3_plus": {
+      "SYN": "q3_plus",
+      "SYN_ACK": "q_dead",
+      "ACK": "q_dead",
+      "FIN": "q_dead",
+      "RST": "q_dead",
+      "TIMEOUT": "q_dead"
+    },
+    "q_dead": {
+      "SYN": "q_dead",
+      "SYN_ACK": "q_dead",
+      "ACK": "q_dead",
+      "FIN": "q_dead",
+      "RST": "q_dead",
+      "TIMEOUT": "q_dead"
+    }
+  }
+}
